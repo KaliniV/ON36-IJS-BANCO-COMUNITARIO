@@ -1,0 +1,18 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var Cliente_1 = require("./domain/Cliente");
+var Conta_1 = require("./domain/Conta");
+var cliente1 = new Cliente_1.cliente("Kalini", "12", "Rua ..", "(21) 99877-777", "123.432.222-01");
+var conta1 = new Conta_1.Conta(1000, cliente1, "001");
+console.log("Cliente: " + cliente1.getNome());
+console.log("Saldo inicial da conta: " + conta1.Saldo);
+conta1.depositar(100);
+console.log("Saldo atual ap\u00F3s dep\u00F3sito: " + conta1.Saldo);
+console.log("Valor do cheque especial: " + conta1.SaldoChequeEspecial + " ");
+conta1.sacarCorrente(300);
+console.log("Novo saldo ap\u00F3s saque: " + conta1.Saldo);
+var conta2 = new Conta_1.Conta(500, new Cliente_1.cliente('Maria', '2', 'Av. ..', '(11) 88888-8888', '987.654.321-00'), '002');
+console.log("Saldo inicial da outra conta: " + conta2.Saldo);
+conta1.transferir(300, conta2);
+console.log("Novo saldo da conta ap\u00F3s transfer\u00EAncia: " + conta1.Saldo);
+console.log("Novo saldo da outra conta ap\u00F3s transfer\u00EAncia: " + conta2.Saldo);
