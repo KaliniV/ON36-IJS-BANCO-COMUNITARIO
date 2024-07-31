@@ -1,0 +1,43 @@
+[
+  {
+    "id": 2,
+    "nome": "Claidoa Ban",
+    "cpf": "444.221.222-55",
+    "endereco": "Rua Aas",
+    "telefone": "(21)98812-0177",
+    "Conta": [
+      [
+        {
+          "saldoInicial": 1000,
+          "type": "poupanca"
+        }
+      ]
+    ]
+  },
+  {
+    "id": 3,
+    "nome": "João Silva",
+    "cpf": "123.456.789-00",
+    "endereco": "Rua Exemplo, 123",
+    "telefone": "(11) 91234-5678",
+    "Conta": [
+      {
+        "saldoInicial": 5000,
+        "type": "corrente"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "nome": "Matheus Silva",
+    "cpf": "321.456.789-00",
+    "endereco": "Rua Ex, 123",
+    "telefone": "(21) 91234-5678",
+    "Conta": [
+      {
+        "saldoInicial": 8000,
+        "type": "corrente"
+      }
+    ]
+  }
+]
