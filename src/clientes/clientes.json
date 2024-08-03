@@ -1,43 +1,42 @@
 [
   {
+    "id": 1,
+    "nome": "Mario Silva",
+    "cpf": "12345678901",
+    "endereco": "Rua Nova, 456",
+    "telefone": "11987654322",
+    "contas": [
+      {
+        "ehGerente": true,
+        "tipo": "corrente",
+        "saldo": 1000,
+        "id": 1,
+        "titularId": 1
+      }
+    ]
+  },
+  {
     "id": 2,
-    "nome": "Claidoa Ban",
-    "cpf": "444.221.222-55",
-    "endereco": "Rua Aas",
-    "telefone": "(21)98812-0177",
-    "Conta": [
-      [
-        {
-          "saldoInicial": 1000,
-          "type": "poupanca"
-        }
-      ]
+    "nome": "João Silva",
+    "cpf": "12345678901",
+    "endereco": "Rua Exemplo, 123",
+    "telefone": "11987654321",
+    "contas": [
+      {
+        "id": 1,
+        "titularId": 2,
+        "saldo": 1000,
+        "tipo": "CORRENTE",
+        "limite": 500
+      }
     ]
   },
   {
     "id": 3,
-    "nome": "João Silva",
-    "cpf": "123.456.789-00",
-    "endereco": "Rua Exemplo, 123",
-    "telefone": "(11) 91234-5678",
-    "Conta": [
-      {
-        "saldoInicial": 5000,
-        "type": "corrente"
-      }
-    ]
-  },
-  {
-    "id": 4,
     "nome": "Matheus Silva",
     "cpf": "321.456.789-00",
     "endereco": "Rua Ex, 123",
     "telefone": "(21) 91234-5678",
-    "Conta": [
-      {
-        "saldoInicial": 8000,
-        "type": "corrente"
-      }
-    ]
+    "contas": []
   }
 ]

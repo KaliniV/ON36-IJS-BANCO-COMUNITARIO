@@ -5,72 +5,63 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GerentesService = void 0;
 const common_1 = require("@nestjs/common");
-const path = require("path");
-const fs = require("fs");
+const clientes_service_1 = require("../clientes/clientes.service");
 let GerentesService = class GerentesService {
-    constructor() {
-        this.filePath = path.resolve('src/gerentes/gerentes.json');
+    constructor(clientesService) {
+        this.clientesService = clientesService;
     }
-    readGerentes() {
+    criarCliente(nome, cpf, endereco, telefone, ehGerente) {
+        if (!ehGerente) {
+            return "Acesso negado: você não tem permissões de gerente.";
+        }
+        return this.clientesService.criarCliente(nome, cpf, endereco, telefone, ehGerente);
+    }
+    findAll(ehGerente) {
+        if (!ehGerente) {
+            return "Acesso negado: você não tem permissões de gerente.";
+        }
+        return this.clientesService.findAll();
+    }
+    findById(id, ehGerente) {
+        if (!ehGerente) {
+            return "Acesso negado: você não tem permissões de gerente.";
+        }
+        return this.clientesService.findById(id);
+    }
+    modificarCliente(id, nome, endereco, telefone, ehGerente) {
+        if (!ehGerente) {
+            return "Acesso negado: você não tem permissões de gerente.";
+        }
+        return this.clientesService.modificarCliente(id, nome, endereco, telefone);
+    }
+    deletarCliente(id, ehGerente) {
+        if (!ehGerente) {
+            return "Acesso negado: você não tem permissões de gerente.";
+        }
         try {
-            const data = fs.readFileSync(this.filePath, 'utf8');
-            return JSON.parse(data);
+            this.clientesService.deletarCliente(id);
+            return "Cliente deletado com sucesso.";
         }
         catch (error) {
-            if (error.code === 'ENOENT') {
-                return [];
-            }
-            else {
-                throw error;
-            }
+            return error.message;
         }
     }
-    writeGerentes(gerentes) {
-        fs.writeFileSync(this.filePath, JSON.stringify(gerentes, null, 2), 'utf8');
-    }
-    criarCliente(nome, gerente) {
-        const gerentes = this.readGerentes();
-        if (!Array.isArray(gerentes)) {
-            throw new Error('Os dados do arquivo não são um array.');
+    adicionarConta(id, saldo, tipo, especifico, ehGerente) {
+        if (!ehGerente) {
+            return "Acesso negado: você não tem permissões de gerente.";
         }
-        const newGerente = {
-            idGerente: gerentes.length > 0 ? gerentes[gerentes.length - 1].idGerente + 1 : 1,
-            nome,
-            Cliente: [gerente]
-        };
-        gerentes.push(newGerente);
-        this.writeGerentes(gerentes);
-        return newGerente;
-    }
-    findAll() {
-        return this.readGerentes();
-    }
-    modificarCliente(idGerente, idCliente, clienteAtualizado) {
-        const gerentes = this.readGerentes();
-        const gerente = gerentes.find(g => g.idGerente === idGerente);
-        if (!gerente) {
-            return null;
-        }
-        const cliente = gerente.Cliente.find(c => c.id === idCliente);
-        if (!cliente) {
-            return null;
-        }
-        Object.assign(cliente, clienteAtualizado);
-        this.writeGerentes(gerentes);
-        return cliente;
-    }
-    deletarCliente(idGerente) {
-        const gerentes = this.readGerentes();
-        const gerenteIndex = gerentes.findIndex(gerente => gerente.idGerente === Number(idGerente));
-        gerentes.splice(gerenteIndex, 1);
-        this.writeGerentes(gerentes);
+        return this.clientesService.adicionarConta(id, saldo, tipo, especifico);
     }
 };
 exports.GerentesService = GerentesService;
 exports.GerentesService = GerentesService = __decorate([
-    (0, common_1.Injectable)()
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [clientes_service_1.ClientesService])
 ], GerentesService);
 //# sourceMappingURL=gerentes.service.js.map

@@ -1,5 +1,8 @@
+import { TipoConta } from "src/enums/tipoConta";
 export declare class Conta {
-    saldoInicial: number;
-    type: 'poupanca' | 'corrente';
-    constructor(saldoInicial: number, type: 'poupanca' | 'corrente');
+    id: number;
+    titularId: number;
+    saldo: number;
+    tipo: TipoConta;
+    constructor(id: number, titularId: number, saldo: number, tipo: TipoConta);
 }

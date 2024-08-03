@@ -1,8 +1,10 @@
-export class Conta {
-    constructor(
-        public saldoInicial: number = 0,
-        public type: 'poupanca' | 'corrente'
-    ) {
+import { TipoConta } from "src/enums/tipoConta";
 
-    }
+export class Conta {
+  constructor(
+    public id: number,
+    public titularId: number, // ID do Cliente
+    public saldo: number,
+    public tipo: TipoConta
+  ) {}
 }

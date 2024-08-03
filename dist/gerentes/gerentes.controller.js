@@ -15,58 +15,89 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.GerentesController = void 0;
 const common_1 = require("@nestjs/common");
 const gerentes_service_1 = require("./gerentes.service");
-const cliente_model_1 = require("../clientes/cliente.model");
+const tipoConta_1 = require("../enums/tipoConta");
 let GerentesController = class GerentesController {
     constructor(gerentesService) {
         this.gerentesService = gerentesService;
     }
-    criarCliente(nome, cliente) {
-        return this.gerentesService.criarCliente(nome, cliente);
+    criarCliente(nome, cpf, endereco, telefone, ehGerente) {
+        return this.gerentesService.criarCliente(nome, cpf, endereco, telefone, ehGerente);
     }
-    findAll() {
-        return this.gerentesService.findAll();
+    findById(id, ehGerente) {
+        return this.gerentesService.findById(id, ehGerente);
     }
-    modificarCliente(idGerente, id, clienteAtualizado) {
-        const cliente = this.gerentesService.modificarCliente(idGerente, id, clienteAtualizado);
-        return cliente;
+    findAll(ehGerente) {
+        return this.gerentesService.findAll(ehGerente);
     }
-    deletarCliente(idGerente) {
-        return this.gerentesService.deletarCliente(idGerente);
+    modificarCliente(id, newNome, newEndereco, newTelefone, ehGerente) {
+        return this.gerentesService.modificarCliente(id, newNome, newEndereco, newTelefone, ehGerente);
+    }
+    deletarCliente(id, ehGerente) {
+        return this.gerentesService.deletarCliente(id, ehGerente);
+    }
+    adicionarConta(id, saldo, tipo, especifico, ehGerente) {
+        return this.gerentesService.adicionarConta(id, saldo, tipo, especifico, ehGerente);
     }
 };
 exports.GerentesController = GerentesController;
 __decorate([
-    (0, common_1.Post)(),
-    __param(0, (0, common_1.Body)('nome')),
-    __param(1, (0, common_1.Body)('cliente')),
+    (0, common_1.Post)("cliente"),
+    __param(0, (0, common_1.Body)("nome")),
+    __param(1, (0, common_1.Body)("cpf")),
+    __param(2, (0, common_1.Body)("endereco")),
+    __param(3, (0, common_1.Body)("telefone")),
+    __param(4, (0, common_1.Body)("ehGerente")),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, cliente_model_1.Cliente]),
+    __metadata("design:paramtypes", [String, String, String, String, Boolean]),
     __metadata("design:returntype", void 0)
 ], GerentesController.prototype, "criarCliente", null);
 __decorate([
-    (0, common_1.Get)(),
+    (0, common_1.Get)(":id"),
+    __param(0, (0, common_1.Param)("id", common_1.ParseIntPipe)),
+    __param(1, (0, common_1.Query)("ehGerente")),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Array)
+    __metadata("design:paramtypes", [Number, Boolean]),
+    __metadata("design:returntype", Object)
+], GerentesController.prototype, "findById", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)("ehGerente")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Boolean]),
+    __metadata("design:returntype", void 0)
 ], GerentesController.prototype, "findAll", null);
 __decorate([
-    (0, common_1.Patch)(':idGerente/clientes/:id'),
-    __param(0, (0, common_1.Param)('idGerente')),
-    __param(1, (0, common_1.Param)('id')),
-    __param(2, (0, common_1.Body)()),
+    (0, common_1.Patch)(":id/modificacao"),
+    __param(0, (0, common_1.Param)("id", common_1.ParseIntPipe)),
+    __param(1, (0, common_1.Body)("nome")),
+    __param(2, (0, common_1.Body)("endereco")),
+    __param(3, (0, common_1.Body)("telefone")),
+    __param(4, (0, common_1.Query)("ehGerente")),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, Number, Object]),
+    __metadata("design:paramtypes", [Number, String, String, String, Boolean]),
     __metadata("design:returntype", void 0)
 ], GerentesController.prototype, "modificarCliente", null);
 __decorate([
-    (0, common_1.Delete)(':idGerente'),
-    __param(0, (0, common_1.Param)('idGerente', common_1.ParseIntPipe)),
+    (0, common_1.Delete)(":id"),
+    __param(0, (0, common_1.Param)("id", common_1.ParseIntPipe)),
+    __param(1, (0, common_1.Query)("ehGerente")),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
+    __metadata("design:paramtypes", [Number, Boolean]),
     __metadata("design:returntype", void 0)
 ], GerentesController.prototype, "deletarCliente", null);
+__decorate([
+    (0, common_1.Post)(":id/adicionar-conta"),
+    __param(0, (0, common_1.Param)("id", common_1.ParseIntPipe)),
+    __param(1, (0, common_1.Body)("saldo")),
+    __param(2, (0, common_1.Body)("tipo")),
+    __param(3, (0, common_1.Body)("especifico")),
+    __param(4, (0, common_1.Body)("ehGerente")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, Number, String, Number, Boolean]),
+    __metadata("design:returntype", Object)
+], GerentesController.prototype, "adicionarConta", null);
 exports.GerentesController = GerentesController = __decorate([
-    (0, common_1.Controller)('gerentes'),
+    (0, common_1.Controller)("gerentes"),
     __metadata("design:paramtypes", [gerentes_service_1.GerentesService])
 ], GerentesController);
 //# sourceMappingURL=gerentes.controller.js.map

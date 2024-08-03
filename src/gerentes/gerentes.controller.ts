@@ -1,37 +1,94 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
-import { GerentesService } from './gerentes.service';
-import { Cliente } from 'src/clientes/cliente.model';
-import { Gerente } from './gerente.model';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  ParseIntPipe,
+  Patch,
+  Post,
+  Query,
+} from "@nestjs/common";
+import { GerentesService } from "./gerentes.service";
+import { Cliente } from "src/clientes/cliente.model";
+import { Gerente } from "./gerente.model";
+import { Conta } from "src/contas/conta.model";
+import { ContaPoupanca } from "src/contas/contaPoupanca.model";
+import { ContaCorrente } from "src/contas/contaCorrente.model";
+import { TipoConta } from "src/enums/tipoConta";
 
-@Controller('gerentes')
+@Controller("gerentes")
 export class GerentesController {
-    constructor(private readonly gerentesService: GerentesService) { }
+  constructor(private readonly gerentesService: GerentesService) {}
 
-    @Post()
-    criarCliente(
-        @Body('nome') nome: string,
-        @Body('cliente') cliente: Cliente
-    ) {
-        return this.gerentesService.criarCliente(nome, cliente);
-    }
-    @Get()
-    findAll(): Gerente[] {
-        return this.gerentesService.findAll();
-    }
+  @Post("cliente")
+  criarCliente(
+    @Body("nome") nome: string,
+    @Body("cpf") cpf: string,
+    @Body("endereco") endereco: string,
+    @Body("telefone") telefone: string,
+    @Body("ehGerente") ehGerente: boolean
+  ) {
+    return this.gerentesService.criarCliente(
+      nome,
+      cpf,
+      endereco,
+      telefone,
+      ehGerente
+    );
+  }
 
-    @Patch(':idGerente/clientes/:id')
-    modificarCliente(
-        @Param('idGerente') idGerente: number,
-        @Param('id') id: number,
-        @Body() clienteAtualizado: Partial<Cliente>
-    ) {
-        const cliente = this.gerentesService.modificarCliente(idGerente, id, clienteAtualizado);
+  @Get(":id")
+  findById(
+    @Param("id", ParseIntPipe) id: number,
+    @Query("ehGerente") ehGerente: boolean
+  ): Cliente | string {
+    return this.gerentesService.findById(id, ehGerente);
+  }
 
-        return cliente;
-    }
-    @Delete(':idGerente')
-    deletarCliente(@Param('idGerente', ParseIntPipe) idGerente: number): void {
-        return this.gerentesService.deletarCliente(idGerente);
-    }
+  @Get()
+  findAll(@Query("ehGerente") ehGerente: boolean) {
+    return this.gerentesService.findAll(ehGerente);
+  }
+  @Patch(":id/modificacao")
+  modificarCliente(
+    @Param("id", ParseIntPipe) id: number,
+    @Body("nome") newNome: string,
+    @Body("endereco") newEndereco: string,
+    @Body("telefone") newTelefone: string,
+    @Query("ehGerente") ehGerente: boolean
+  ) {
+    return this.gerentesService.modificarCliente(
+      id,
+      newNome,
+      newEndereco,
+      newTelefone,
+      ehGerente
+    );
+  }
 
+  @Delete(":id")
+  deletarCliente(
+    @Param("id", ParseIntPipe) id: number,
+    @Query("ehGerente") ehGerente: boolean
+  ) {
+    return this.gerentesService.deletarCliente(id, ehGerente);
+  }
+
+  @Post(":id/adicionar-conta")
+  adicionarConta(
+    @Param("id", ParseIntPipe) id: number,
+    @Body("saldo") saldo: number,
+    @Body("tipo") tipo: TipoConta,
+    @Body("especifico") especifico: number,
+    @Body("ehGerente") ehGerente: boolean
+  ): Conta | string {
+    return this.gerentesService.adicionarConta(
+      id,
+      saldo,
+      tipo,
+      especifico,
+      ehGerente
+    );
+  }
 }

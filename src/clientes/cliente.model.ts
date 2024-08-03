@@ -1,13 +1,12 @@
-import { Conta } from '../contas/conta.model';
-export class Cliente {
+import { Conta } from "../contas/conta.model";
 
-    constructor(
-        public id: number,
-        public nome: string,
-        public cpf: string,
-        public endereco: string,
-        public telefone: string,
-        public Conta: Conta[]
-    ) {
-    }
+export class Cliente {
+  constructor(
+    public id: number,
+    public nome: string,
+    public cpf: string,
+    public endereco: string,
+    public telefone: string,
+    public contas: Conta[]
+  ) {}
 }

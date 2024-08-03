@@ -2,9 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Conta = void 0;
 class Conta {
-    constructor(saldoInicial = 0, type) {
-        this.saldoInicial = saldoInicial;
-        this.type = type;
+    constructor(id, titularId, saldo, tipo) {
+        this.id = id;
+        this.titularId = titularId;
+        this.saldo = saldo;
+        this.tipo = tipo;
     }
 }
 exports.Conta = Conta;
