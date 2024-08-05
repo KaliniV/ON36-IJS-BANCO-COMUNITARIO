@@ -1,10 +1,10 @@
 import { Module } from "@nestjs/common";
-import { GerentesService } from "./gerentes.service";
-import { GerentesController } from "./gerentes.controller";
-import { ClientesModule } from "../clientes/clientes.module"; // Importando ClientesModule para acesso ao ClientesService
+import { GerentesService } from "./service/gerentes.service";
+import { GerentesController } from "./controller/gerentes.controller";
+import { ClientesModule } from "../clientes/clientes.module";
 
 @Module({
-  imports: [ClientesModule], // Importando ClientesModule aqui
+  imports: [ClientesModule],
   providers: [GerentesService],
   controllers: [GerentesController],
 })

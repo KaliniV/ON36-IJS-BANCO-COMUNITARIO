@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ContasFactory = void 0;
-const contaCorrente_model_1 = require("../contas/contaCorrente.model");
-const contaPoupanca_model_1 = require("../contas/contaPoupanca.model");
+const contaCorrente_model_1 = require("../contas/model/contaCorrente.model");
+const contaPoupanca_model_1 = require("../contas/model/contaPoupanca.model");
 const tipoConta_1 = require("../enums/tipoConta");
 class ContasFactory {
     static CriarConta(id, titularId, saldo, tipo, especifico) {
