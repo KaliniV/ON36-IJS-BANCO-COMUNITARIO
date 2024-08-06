@@ -1,4 +1,4 @@
-import { Cliente } from "src/clientes/cliente.model";
+import { Cliente } from "src/clientes/model/cliente.model";
 import { Conta } from "src/contas/entidade/Conta";
 export declare class Gerente {
     private id;
