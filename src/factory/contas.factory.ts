@@ -1,7 +1,7 @@
-import { Conta } from "src/contas/model/conta.model";
-import { ContaCorrente } from "src/contas//model/contaCorrente.model";
-import { ContaPoupanca } from "src/contas/model/contaPoupanca.model";
-import { TipoConta } from "src/enums/tipoConta";
+import { Conta } from "../contas/model/conta.model";
+import { ContaCorrente } from "../contas//model/contaCorrente.model";
+import { ContaPoupanca } from "../contas/model/contaPoupanca.model";
+import { TipoConta } from "../enums/tipoConta";
 export class ContasFactory {
   static CriarConta(
     id: number,

@@ -9,7 +9,7 @@
       {
         "ehGerente": true,
         "tipo": "corrente",
-        "saldo": 1000,
+        "saldo": 800,
         "id": 1,
         "titularId": 1
       }
@@ -25,7 +25,7 @@
       {
         "id": 1,
         "titularId": 2,
-        "saldo": 1000,
+        "saldo": 1200,
         "tipo": "CORRENTE",
         "limite": 500
       }

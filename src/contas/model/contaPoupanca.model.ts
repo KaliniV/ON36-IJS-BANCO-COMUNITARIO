@@ -1,4 +1,4 @@
-import { TipoConta } from "src/enums/tipoConta";
+import { TipoConta } from "../../enums/tipoConta";
 import { Conta } from "./conta.model";
 
 export class ContaPoupanca extends Conta {
@@ -6,8 +6,11 @@ export class ContaPoupanca extends Conta {
     id: number,
     titularId: number, // ID do Cliente
     saldo: number,
-    rendimento: number // taxa de rendimento
+    public rendimento: number // taxa de rendimento
   ) {
     super(id, titularId, saldo, TipoConta.POUPANCA);
+  }
+  aplicarRendimento(): void {
+    this.saldo += this.saldo * this.rendimento;
   }
 }
