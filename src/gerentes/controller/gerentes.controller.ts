@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Body,
   Controller,
   Delete,
@@ -71,7 +72,47 @@ export class GerentesController {
   ) {
     return this.gerentesService.deletarCliente(id, ehGerente);
   }
+  @Post("transferir")
+  async transferir(
+    @Body()
+    body: {
+      origemClienteId: number;
+      origemContaId: number;
+      destinoClienteId: number;
+      destinoContaId: number;
+      valor: number;
+    },
+    @Query("ehGerente") ehGerente: boolean
+  ): Promise<string> {
+    const {
+      origemClienteId,
+      origemContaId,
+      destinoClienteId,
+      destinoContaId,
+      valor,
+    } = body;
 
+    if (valor <= 0) {
+      throw new BadRequestException(
+        "O valor da transferência deve ser positivo."
+      );
+    }
+
+    try {
+      const resultado = await this.gerentesService.transferir(
+        origemClienteId,
+        origemContaId,
+        destinoClienteId,
+        destinoContaId,
+        valor,
+        ehGerente
+      );
+
+      return resultado;
+    } catch (error) {
+      return `Erro: ${error.message}`;
+    }
+  }
   @Post(":id/adicionar-conta")
   adicionarConta(
     @Param("id", ParseIntPipe) id: number,

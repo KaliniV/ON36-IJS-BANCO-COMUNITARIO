@@ -1,4 +1,4 @@
-import { TipoConta } from "src/enums/tipoConta";
+import { TipoConta } from "../../enums/tipoConta";
 import { Conta } from "./conta.model";
 
 export class ContaCorrente extends Conta {
@@ -9,5 +9,12 @@ export class ContaCorrente extends Conta {
     public limite: number // limite de cheque especial
   ) {
     super(id, titularId, saldo, TipoConta.CORRENTE);
+  }
+  sacar(valor: number): boolean {
+    if (valor <= this.saldo + this.limite) {
+      this.saldo -= valor;
+      return true;
+    }
+    return false;
   }
 }
