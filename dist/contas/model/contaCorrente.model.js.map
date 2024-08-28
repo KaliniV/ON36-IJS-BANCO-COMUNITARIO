@@ -1,1 +1,0 @@
-{"version":3,"file":"contaCorrente.model.js","sourceRoot":"","sources":["../../../src/contas/model/contaCorrente.model.ts"],"names":[],"mappings":";;;AAAA,qDAAgD;AAChD,+CAAsC;AAEtC,MAAa,aAAc,SAAQ,mBAAK;IACtC,YACE,EAAU,EACV,SAAiB,EACjB,KAAa,EACN,MAAc;QAErB,KAAK,CAAC,EAAE,EAAE,SAAS,EAAE,KAAK,EAAE,qBAAS,CAAC,QAAQ,CAAC,CAAC;QAFzC,WAAM,GAAN,MAAM,CAAQ;IAGvB,CAAC;CACF;AATD,sCASC"}
