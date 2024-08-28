@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "nome": "Joana da Silva Modificado",
+    "cpf": "12345678901",
+    "endereco": "Rua B, 456",
+    "telefone": "(11) 91234-5678",
+    "contas": [
+      {
+        "ehGerente": true,
+        "tipo": "corrente",
+        "saldo": 800,
+        "id": 1,
+        "titularId": 1
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "nome": "João Silva",
+    "cpf": "12345678901",
+    "endereco": "Rua Exemplo, 123",
+    "telefone": "11987654321",
+    "contas": [
+      {
+        "id": 1,
+        "titularId": 2,
+        "saldo": 1200,
+        "tipo": "CORRENTE",
+        "limite": 500
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "nome": "Matheus Silva",
+    "cpf": "321.456.789-00",
+    "endereco": "Rua Ex, 123",
+    "telefone": "(21) 91234-5678",
+    "contas": [
+      {
+        "id": 1,
+        "titularId": 3,
+        "saldo": 1000,
+        "tipo": "CORRENTE",
+        "limite": 123
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "nome": "João da Silva",
+    "cpf": "123.456.789-00",
+    "endereco": "Rua A, 123",
+    "telefone": "(11) 98765-4321",
+    "contas": []
+  }
+]
