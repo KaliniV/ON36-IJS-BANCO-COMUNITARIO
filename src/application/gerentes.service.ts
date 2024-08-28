@@ -79,4 +79,60 @@ export class GerentesService {
 
     return this.clientesService.adicionarConta(id, saldo, tipo, especifico);
   }
+
+  async transferir(
+    origemClienteId: number,
+    origemContaId: number,
+    destinoClienteId: number,
+    destinoContaId: number,
+    valor: number,
+    ehGerente: boolean
+  ): Promise<string> {
+    if (!ehGerente) {
+      return "Acesso negado: você não tem permissões de gerente.";
+    }
+
+    if (valor <= 0) {
+      return "Valor da transferência deve ser positivo.";
+    }
+
+    try {
+      // Obtém os dados dos clientes e contas
+      const origemCliente =
+        await this.clientesService.findById(origemClienteId);
+      const destinoCliente =
+        await this.clientesService.findById(destinoClienteId);
+
+      if (!origemCliente || !destinoCliente) {
+        return "Cliente(s) não encontrado(s).";
+      }
+
+      const origemConta = origemCliente.contas.find(
+        (c) => c.id === origemContaId
+      );
+      const destinoConta = destinoCliente.contas.find(
+        (c) => c.id === destinoContaId
+      );
+
+      if (!origemConta || !destinoConta) {
+        return "Conta(s) não encontrada(s).";
+      }
+
+      if (origemConta.saldo < valor) {
+        return "Saldo insuficiente na conta de origem.";
+      }
+
+      // Realiza a transferência
+      origemConta.saldo -= valor;
+      destinoConta.saldo += valor;
+
+      // Atualiza os dados dos clientes
+      await this.clientesService.atualizarCliente(origemCliente);
+      await this.clientesService.atualizarCliente(destinoCliente);
+
+      return "Transferência realizada com sucesso.";
+    } catch (error) {
+      return `Erro ao realizar a transferência: ${error.message}`;
+    }
+  }
 }

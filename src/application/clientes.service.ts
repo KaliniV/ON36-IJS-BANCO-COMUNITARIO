@@ -37,12 +37,25 @@ export class ClientesService {
       throw new NotFoundException(`Cliente com o id ${id} não foi encontrado.`);
     }
     return cliente;
-  }
+ }
 
   findAll(): Cliente[] {
     return this.clientesRepository.findAll();
   }
+  async atualizarCliente(cliente: Cliente): Promise<void> {
+    const clientes = this.readClientes();
+    const index = clientes.findIndex((c) => c.id === cliente.id);
 
+    if (index === -1) {
+      throw new NotFoundException("Cliente não encontrado.");
+    }
+
+    // Atualiza os dados do cliente
+    clientes[index] = cliente;
+
+    // Grava as alterações de volta no arquivo JSON
+    this.writeClientes(clientes);
+  }
   modificarCliente(
     id: number,
     nome: string,

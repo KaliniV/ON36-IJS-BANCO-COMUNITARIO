@@ -6,8 +6,11 @@ export class ContaPoupanca extends Conta {
     id: number,
     titularId: number, // ID do Cliente
     saldo: number,
-    rendimento: number // taxa de rendimento
+    public rendimento: number // taxa de rendimento
   ) {
     super(id, titularId, saldo, TipoConta.POUPANCA);
+  }
+  aplicarRendimento(): void {
+    this.saldo += this.saldo * this.rendimento;
   }
 }

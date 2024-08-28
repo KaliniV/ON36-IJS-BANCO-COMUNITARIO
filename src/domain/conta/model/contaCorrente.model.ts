@@ -10,4 +10,11 @@ export class ContaCorrente extends Conta {
   ) {
     super(id, titularId, saldo, TipoConta.CORRENTE);
   }
+  sacar(valor: number): boolean {
+    if (valor <= this.saldo + this.limite) {
+      this.saldo -= valor;
+      return true;
+    }
+    return false;
+  }
 }
