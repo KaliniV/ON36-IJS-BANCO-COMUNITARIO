@@ -1,0 +1,6 @@
+
+###
+GET http://localhost:3000/cliente
+
+### BUSCAR SOMENTE UM CLIENTE
+GET http://localhost:3000/cliente/1

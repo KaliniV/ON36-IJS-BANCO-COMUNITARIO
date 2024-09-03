@@ -1,0 +1,25 @@
+[
+  {
+    "id": "1",
+    "nome": "Maria Maria",
+    "cpf": "111.011.211-11",
+    "endereco": "Avenida Exemplo",
+    "telefone": "(31) 99999-9999"
+  },
+  {
+    "id": "391db6d9-8a00-4ce9-965f-6de9d3d9c5d3",
+    "nome": "CLauria Baria",
+    "cpf": "222.022.322-22",
+    "idade": 19,
+    "endereco": "Avenida Tipo",
+    "telefone": "(21) 22222-2222"
+  },
+  {
+    "id": "d1a37687-6ba0-414c-a34d-d509b3ad95a9",
+    "nome": "Mario Baria",
+    "cpf": "222.022.322-22",
+    "idade": 19,
+    "endereco": "Avenida Tipo",
+    "telefone": "(21) 22222-2222"
+  }
+]
