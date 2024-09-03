@@ -12,7 +12,6 @@ export class ClienteMapeador {
     };
   }
   static paraDominio(persistido: any): Cliente {
-    // Certifique-se de que esta função retorna um valor síncrono
     return new Cliente(
       persistido.id,
       persistido.nome,

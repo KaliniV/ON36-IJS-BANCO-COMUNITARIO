@@ -7,7 +7,7 @@ import { NotFoundException } from '@nestjs/common';
 export class ClientePersistenciaAdapter implements ClienteRepositoryPort {
   private readonly filePath = join(
     __dirname,
-    '../../../../../src/banco-cliente.json',
+    '../../../../../src/cliente/json/banco-cliente.json',
   );
 
   async salvar(cliente: Cliente): Promise<void> {
