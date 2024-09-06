@@ -1,0 +1,26 @@
+import { Cliente } from 'src/cliente/domain/models/cliente.entity';
+
+export class ClienteMapeador {
+  static paraPersistence(cliente: Cliente) {
+    return {
+      id: cliente.id,
+      nome: cliente.nome,
+      cpf: cliente.cpf,
+      idade: cliente.idade,
+      endereco: cliente.endereco,
+      telefone: cliente.telefone,
+      conta: cliente.contas,
+    };
+  }
+  static paraDominio(persistido: any): Cliente {
+    return new Cliente(
+      persistido.id,
+      persistido.nome,
+      persistido.cpf,
+      persistido.idade,
+      persistido.endereco,
+      persistido.telefone,
+      persistido.contas || [],
+    );
+  }
+}
