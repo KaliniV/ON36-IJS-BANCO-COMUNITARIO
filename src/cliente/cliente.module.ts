@@ -9,6 +9,6 @@ import { ClientePersistenciaAdapter } from './adapter/out/persistence/cliente.pe
     ClienteService,
     { provide: 'ClienteRepositoryPort', useClass: ClientePersistenciaAdapter },
   ],
-  exports: [ClienteService],
+  exports: [ClienteService, 'ClienteRepositoryPort'], // Exporte o ClienteRepositoryPort
 })
 export class ClienteModule {}

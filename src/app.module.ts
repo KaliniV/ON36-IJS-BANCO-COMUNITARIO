@@ -9,16 +9,11 @@ import { GerenteService } from './gerente/application/services/gerente.service';
 import { GerentePersistenciaAdapter } from './gerente/adapter/out/persistence/gerente.persistencia.adapter';
 import { GerenteController } from './gerente/adapter/in/web/gerente.controller';
 import { GerenteModule } from './gerente/gerente.module';
+import { ContaModule } from './conta/conta.module';
 
 @Module({
-  imports: [ClienteModule, GerenteModule],
-  controllers: [AppController, ClienteController, GerenteController],
-  providers: [
-    AppService,
-    ClienteService,
-    { provide: 'ClienteRepositoryPort', useClass: ClientePersistenciaAdapter },
-    GerenteService,
-    { provide: 'GerenteRepositoryPort', useClass: GerentePersistenciaAdapter },
-  ],
+  imports: [ClienteModule, GerenteModule, ContaModule],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}

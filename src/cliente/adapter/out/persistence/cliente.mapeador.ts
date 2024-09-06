@@ -9,6 +9,7 @@ export class ClienteMapeador {
       idade: cliente.idade,
       endereco: cliente.endereco,
       telefone: cliente.telefone,
+      conta: cliente.contas,
     };
   }
   static paraDominio(persistido: any): Cliente {
@@ -19,6 +20,7 @@ export class ClienteMapeador {
       persistido.idade,
       persistido.endereco,
       persistido.telefone,
+      persistido.contas || [],
     );
   }
 }

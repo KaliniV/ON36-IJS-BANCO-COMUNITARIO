@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { Conta } from 'src/conta/domain/models/conta.entity';
 
 @Injectable()
 export class Cliente {
@@ -9,6 +10,6 @@ export class Cliente {
     public idade: number,
     public endereco: string,
     public telefone: string,
-    public conta?: [],
+    public contas: Conta[] = [],
   ) {}
 }

@@ -6,7 +6,6 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { ClienteRepositoryPort } from '../ports/out/cliente-repository.port';
 import { obterClienteConsulta } from '../ports/in/obter-cliente.consulta';
-import { AtualizarClienteDto } from 'src/cliente/adapter/in/web/dto/atualizar-cliente.dto';
 @Injectable()
 export class ClienteService {
   constructor(
@@ -22,6 +21,7 @@ export class ClienteService {
       comando.idade,
       comando.endereco,
       comando.telefone,
+      comando.conta,
     );
 
     return this.clienteRepository.salvar(cliente);
@@ -56,7 +56,7 @@ export class ClienteService {
       dados.idade ?? clienteExistente.idade,
       dados.endereco ?? clienteExistente.endereco,
       dados.telefone ?? clienteExistente.telefone,
-      dados.conta ?? clienteExistente.conta,
+      dados.contas ?? clienteExistente.contas,
     );
 
     await this.clienteRepository.salvar(clienteAtualizado);

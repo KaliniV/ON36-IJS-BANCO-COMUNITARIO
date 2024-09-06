@@ -44,6 +44,16 @@ export class ClientePersistenciaAdapter implements ClienteRepositoryPort {
     await fs.writeFile(this.filePath, JSON.stringify(clientes, null, 2));
   }
 
+  async atualizarCliente(cliente: Cliente): Promise<void> {
+    const clientes = await this.lerCliente(); // Lê todos os clientes do arquivo JSON
+    const clienteIndex = clientes.findIndex((c) => c.id === cliente.id);
+    if (clienteIndex === -1) {
+      throw new Error(`Cliente com ID ${cliente.id} não encontrado.`);
+    }
+    clientes[clienteIndex] = ClienteMapeador.paraPersistence(cliente);
+    await fs.writeFile(this.filePath, JSON.stringify(clientes, null, 2));
+  }
+
   private async lerCliente(): Promise<any[]> {
     try {
       const dados = await fs.readFile(this.filePath, 'utf8');

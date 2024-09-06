@@ -1,3 +1,5 @@
+import { Conta } from 'src/conta/domain/models/conta.entity';
+
 export class CriarClienteComando {
   constructor(
     public readonly nome: string,
@@ -5,6 +7,6 @@ export class CriarClienteComando {
     public readonly idade: number,
     public readonly endereco: string,
     public readonly telefone: string,
-    public conta?: [],
+    public conta: Conta[] = [],
   ) {}
 }

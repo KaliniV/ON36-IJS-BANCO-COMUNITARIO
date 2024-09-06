@@ -1,4 +1,5 @@
 import { IsInt, IsNotEmpty, IsString, Min } from 'class-validator';
+import { Conta } from 'src/conta/domain/models/conta.entity';
 
 export class CriarClienteDto {
   @IsNotEmpty()
@@ -21,5 +22,5 @@ export class CriarClienteDto {
   @IsString()
   telefone: string;
 
-  conta: [];
+  conta: Conta[];
 }
